@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
-@RestController
+@Controller
 public class IndexController {
     //TODO 跑的通吗?
 
@@ -23,9 +23,9 @@ public class IndexController {
 
 
     @PreAuthorize("hasRole('user')")
+    // @RequestMapping(value = "/admin",method = RequestMethod.POST)
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String toAdmin() {
-
         return "helloAdmin";
     }
 

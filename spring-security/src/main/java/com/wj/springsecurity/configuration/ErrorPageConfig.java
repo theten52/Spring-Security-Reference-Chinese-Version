@@ -1,4 +1,4 @@
-package com.wj.springsecurity.error;
+package com.wj.springsecurity.configuration;
 
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;

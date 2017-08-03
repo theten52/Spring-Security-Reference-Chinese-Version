@@ -12,6 +12,11 @@ public class UserInfo {
     @Column(name = "id")
     private Long id;
 
+    // 这里配置关系，并且确定关系维护端和被维护端。mappedBy表示关系被维护端，只有关系端有权去更新外键。
+    // 这里还有注意OneToMany默认的加载方式是赖加载。当看到设置关系中最后一个单词是Many，那么该加载默认为懒加载
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    private Set<UserAuthority> userAuthoritySet;
+
     @Column(name = "name")
     private String name;
 
@@ -20,11 +25,6 @@ public class UserInfo {
 
     @Column(name = "password")
     private String password;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-    // 这里配置关系，并且确定关系维护端和被维护端。mappedBy表示关系被维护端，只有关系端有权去更新外键。
-    // 这里还有注意OneToMany默认的加载方式是赖加载。当看到设置关系中最后一个单词是Many，那么该加载默认为懒加载
-    private Set<UserAuthority> authorities;
 
     @Override
     public boolean equals(Object o) {
@@ -78,22 +78,22 @@ public class UserInfo {
         this.password = password;
     }
 
-    public Set<UserAuthority> getAuthorities() {
-        return authorities;
+    public Set<UserAuthority> getUserAuthoritySet() {
+        return userAuthoritySet;
     }
 
-    public void setAuthorities(Set<UserAuthority> authorities) {
-        this.authorities = authorities;
+    public void setUserAuthoritySet(Set<UserAuthority> userAuthoritySet) {
+        this.userAuthoritySet = userAuthoritySet;
     }
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserInfo{" +
                 "id=" + id +
+                ", userAuthoritySet=" + userAuthoritySet +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", authorities=" + authorities +
                 '}';
     }
 }

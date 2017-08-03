@@ -11,12 +11,12 @@ public class UserAuthority {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "authority")
-    private String authority;
-
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")//加入一列作为外键
     private UserInfo user;
+
+    @Column(name = "user_authority")
+    private String userAuthority;
 
     public Long getId() {
         return id;
@@ -26,12 +26,12 @@ public class UserAuthority {
         this.id = id;
     }
 
-    public String getAuthority() {
-        return authority;
+    public String getUserAuthority() {
+        return userAuthority;
     }
 
-    public void setAuthority(String authority) {
-        this.authority = authority;
+    public void setUserAuthority(String userAuthority) {
+        this.userAuthority = userAuthority;
     }
 
     public UserInfo getUser() {
@@ -45,8 +45,8 @@ public class UserAuthority {
     @Override
     public String toString() {
         return "UserAuthority{" +
-                "id='" + id + '\'' +
-                ", authority='" + authority + '\'' +
+                "id=" + id +
+                ", userAuthority='" + userAuthority + '\'' +
                 ", user=" + user +
                 '}';
     }
