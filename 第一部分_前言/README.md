@@ -1,2 +1,1 @@
-# Spring-Security-Reference-Chinese-Version
-Spring Security 参考文献的中文翻译(From Google 翻译).
+Spring Security 是一个功能强大和高度可定制的身份验证和访问控制框架。这是确保基于Spring的应用的事实标准。

@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Security Demo</name>
+    <name>Security Root POM</name>
 
     <!--Parent-->
     <parent>
@@ -19,6 +19,13 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+    <!--Modules-->
+    <modules>
+        <module>spring-security2</module>
+        <module>spring-security</module>
+    </modules>
+
+
     <dependencies>
 
         <!--Security-->
@@ -27,5 +34,33 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
+        <!--SpringMVC-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-thymeleaf</artifactId>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.34</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.15</version>
+        </dependency>
     </dependencies>
 </project>
