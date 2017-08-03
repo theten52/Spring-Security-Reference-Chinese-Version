@@ -5,11 +5,13 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
-@Controller
+@RestController
 public class IndexController {
+    //TODO 跑的通吗?
 
     @Resource
     private SUserService sUserService;
@@ -17,13 +19,12 @@ public class IndexController {
     @RequestMapping("/home")
     public String home() {
         return "home";
-
     }
 
 
     @PreAuthorize("hasRole('user')")
-    @RequestMapping(value = "/admin",method = RequestMethod.GET)
-    public String toAdmin(){
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public String toAdmin() {
 
         return "helloAdmin";
     }
@@ -36,7 +37,7 @@ public class IndexController {
     }
 
     @RequestMapping("/login")
-    public String login(){
+    public String login() {
         return "login";
     }
 
@@ -47,7 +48,7 @@ public class IndexController {
     }
 
     @RequestMapping("/403")
-    public String error(){
+    public String error() {
         return "403";
     }
 }

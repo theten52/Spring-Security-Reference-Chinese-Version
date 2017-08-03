@@ -15,7 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)//开启security注解
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
 
     @Bean
     @Override

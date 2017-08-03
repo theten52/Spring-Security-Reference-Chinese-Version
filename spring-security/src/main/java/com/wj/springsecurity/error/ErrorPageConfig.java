@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus;
 public class ErrorPageConfig {
 
     @Bean
-    public EmbeddedServletContainerCustomizer embeddedServletContainerCustomizer(){
+    public EmbeddedServletContainerCustomizer embeddedServletContainerCustomizer() {
         return new MyCustomizer();
     }
 
@@ -21,7 +21,5 @@ public class ErrorPageConfig {
         public void customize(ConfigurableEmbeddedServletContainer container) {
             container.addErrorPages(new ErrorPage(HttpStatus.FORBIDDEN, "/403"));
         }
-
     }
-
 }

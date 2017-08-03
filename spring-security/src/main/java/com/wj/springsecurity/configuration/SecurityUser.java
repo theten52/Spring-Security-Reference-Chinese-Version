@@ -1,6 +1,6 @@
 package com.wj.springsecurity.configuration;
 
-import com.wj.springsecurity.entity.User;
+import com.wj.springsecurity.entity.UserInfo;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -8,9 +8,9 @@ import java.util.Collection;
 
 public class SecurityUser implements UserDetails {
 
-    private User user;
+    private UserInfo user;
 
-    public SecurityUser(User user) {
+    public SecurityUser(UserInfo user) {
         this.user = user;
     }
 
