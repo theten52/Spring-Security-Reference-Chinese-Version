@@ -3,8 +3,8 @@ package com.wj.spring.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name="role")
-public class Role {
+@Table(name="otm2_role")
+public class Otm2Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="role_id")
@@ -15,7 +15,7 @@ public class Role {
 
     @ManyToOne(cascade=CascadeType.ALL,fetch= FetchType.EAGER)
     @JoinColumn(name="user_id")//加入一列作为外键
-    private User user;
+    private Otm2User otm2User;
 
     public Long getRole_id() {
         return role_id;
@@ -33,12 +33,12 @@ public class Role {
         this.role_name = role_name;
     }
 
-    public User getUser() {
-        return user;
+    public Otm2User getOtm2User() {
+        return otm2User;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setOtm2User(Otm2User otm2User) {
+        this.otm2User = otm2User;
     }
 
 }

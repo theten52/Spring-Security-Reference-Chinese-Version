@@ -5,8 +5,8 @@ import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-@Table(name="user")
-public class User implements Serializable {
+@Table(name="otm2_user")
+public class Otm2User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
@@ -25,8 +25,8 @@ public class User implements Serializable {
      * mappedBy：这个为manytoone中的对象名，这个不要变哦
      * Set<role>：这个类型有两种，一种为list另一种为set
      */
-    @OneToMany(cascade=CascadeType.ALL,fetch= FetchType.LAZY,mappedBy="user")
-    private Set<Role> setRole;
+    @OneToMany(cascade=CascadeType.ALL,fetch= FetchType.LAZY,mappedBy="otm2User")
+    private Set<Otm2Role> setOtm2Role;
 
     public Long getId() {
         return id;
@@ -52,12 +52,12 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Set<Role> getSetRole() {
-        return setRole;
+    public Set<Otm2Role> getSetOtm2Role() {
+        return setOtm2Role;
     }
 
-    public void setSetRole(Set<Role> setRole) {
-        this.setRole = setRole;
+    public void setSetOtm2Role(Set<Otm2Role> setOtm2Role) {
+        this.setOtm2Role = setOtm2Role;
     }
 
 }

@@ -1,8 +1,8 @@
 package com.wj.spring.controller;
 
-import com.wj.spring.entity.Role;
-import com.wj.spring.entity.User;
-import com.wj.spring.service.RoleService;
+import com.wj.spring.entity.Otm2Role;
+import com.wj.spring.entity.Otm2User;
+import com.wj.spring.service.Otm2RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,19 +11,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class FirstController {
 
     @Autowired
-    private RoleService roleService;
+    private Otm2RoleService roleService;
 
     @RequestMapping("/save")
-    public Role save() {
-        User user = new User();
-        user.setName("123456");
-        user.setPassword("123456");
+    public Otm2Role save() {
+        Otm2User otm2User = new Otm2User();
+        otm2User.setName("123456");
+        otm2User.setPassword("123456");
 
-        Role role = new Role();
-        role.setRole_name("student");
-        role.setUser(user);
+        Otm2Role otm2Role = new Otm2Role();
+        otm2Role.setRole_name("student");
+        otm2Role.setOtm2User(otm2User);
 
-        role = roleService.saveRole(role);
-        return role;
+        otm2Role = roleService.saveRole(otm2Role);
+        return otm2Role;
     }
 }
