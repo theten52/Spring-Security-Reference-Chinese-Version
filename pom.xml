@@ -25,6 +25,7 @@
         <module>spring-security</module>
         <module>onetomany</module>
         <module>onetomany2</module>
+        <module>springcloudsecurityoauth2</module>
     </modules>
 
 
