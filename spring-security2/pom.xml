@@ -32,6 +32,11 @@
             </exclusions>
         </dependency>
 
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity4</artifactId>
+        </dependency>
+
         <!--mybatis-->
         <!--<dependency>-->
             <!--<groupId>org.springframework</groupId>-->
