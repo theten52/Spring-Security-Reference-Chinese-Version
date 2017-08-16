@@ -1,21 +1,34 @@
 package com.us.example.domain;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "ss3_permission")
 public class Permission {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private int id;
+
     //权限名称
+    @Column(name = "name")
     private String name;
 
     //权限描述
+    @Column(name = "descritpion")
     private String descritpion;
 
     //授权链接
+    @Column(name = "url")
     private String url;
 
     //父节点id
+    @Column(name = "pid")
     private int pid;
 
     //请求方法
+    @Column(name = "method")
     private String method;
 
     public int getId() {
@@ -66,4 +79,15 @@ public class Permission {
         this.method = method;
     }
 
+    @Override
+    public String toString() {
+        return "Permission{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", descritpion='" + descritpion + '\'' +
+                ", url='" + url + '\'' +
+                ", pid=" + pid +
+                ", method='" + method + '\'' +
+                '}';
+    }
 }

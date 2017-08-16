@@ -36,4 +36,12 @@ public class Msg {
         this.etraInfo = etraInfo;
     }
 
+    @Override
+    public String toString() {
+        return "Msg{" +
+                "title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", etraInfo='" + etraInfo + '\'' +
+                '}';
+    }
 }

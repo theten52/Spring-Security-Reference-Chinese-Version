@@ -1,12 +1,23 @@
 package com.us.example.domain;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "ss3_sys_user")
 public class SysUser {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Integer id;
+
+    @Column(name = "username")
     private String username;
+
+    @Column(name = "password")
     private String password;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "sysUser")
     private List<SysRole> roles;
 
     public Integer getId() {
@@ -41,4 +52,13 @@ public class SysUser {
         this.roles = roles;
     }
 
+    @Override
+    public String toString() {
+        return "SysUser{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
+                '}';
+    }
 }
