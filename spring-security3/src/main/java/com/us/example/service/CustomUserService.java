@@ -1,13 +1,12 @@
 package com.us.example.service;
 
-import com.us.example.repository.PermissionDao;
-import com.us.example.repository.UserDao;
 import com.us.example.domain.Permission;
 import com.us.example.domain.SysRole;
 import com.us.example.domain.SysUser;
+import com.us.example.repository.RoleRepository;
+import com.us.example.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -23,16 +22,26 @@ import java.util.List;
 @Service
 public class CustomUserService implements UserDetailsService { //自定义UserDetailsService 接口
 
+    private final UserRepository userRepository;
+    private final RoleRepository sysRoleRepository;
+
     @Autowired
-    UserDao userDao;
-    @Autowired
-    PermissionDao permissionDao;
+    public CustomUserService(UserRepository userRepository, RoleRepository sysRoleRepository) {
+        this.userRepository = userRepository;
+        this.sysRoleRepository = sysRoleRepository;
+    }
 
     public UserDetails loadUserByUsername(String username) {
-        SysUser user = userDao.findByUserName(username);
+        SysUser user = userRepository.findFirstByUsername(username);
         if (user != null) {
-            List<Permission> permissions = permissionDao.findByAdminUserId(user.getId());
-            List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+            ArrayList<SysRole> sysRoles = sysRoleRepository.findAllBySysUser(user);
+            List<Permission> permissions = new ArrayList<Permission>();
+            for (SysRole role : sysRoles) {
+                for (Object p : role.getPermissions()) {
+                    permissions.add((Permission) p);
+                }
+            }
+            List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
             for (Permission permission : permissions) {
                 if (permission != null && permission.getName() != null) {
 

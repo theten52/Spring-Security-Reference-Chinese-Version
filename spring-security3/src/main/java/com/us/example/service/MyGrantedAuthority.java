@@ -2,15 +2,17 @@ package com.us.example.service;
 
 import org.springframework.security.core.GrantedAuthority;
 
-/**
- * Created by yangyibo on 17/2/15.
- */
 public class MyGrantedAuthority implements GrantedAuthority {
 
     private String url;
     private String method;
 
-    public String getPermissionUrl() {
+    MyGrantedAuthority(String url, String method) {
+        this.url = url;
+        this.method = method;
+    }
+
+    String getPermissionUrl() {
         return url;
     }
 
@@ -18,7 +20,7 @@ public class MyGrantedAuthority implements GrantedAuthority {
         this.url = permissionUrl;
     }
 
-    public String getMethod() {
+    String getMethod() {
         return method;
     }
 
@@ -26,13 +28,16 @@ public class MyGrantedAuthority implements GrantedAuthority {
         this.method = method;
     }
 
-    public MyGrantedAuthority(String url, String method) {
-        this.url = url;
-        this.method = method;
-    }
-
     @Override
     public String getAuthority() {
         return this.url + ";" + this.method;
+    }
+
+    @Override
+    public String toString() {
+        return "MyGrantedAuthority{" +
+                "url='" + url + '\'' +
+                ", method='" + method + '\'' +
+                '}';
     }
 }

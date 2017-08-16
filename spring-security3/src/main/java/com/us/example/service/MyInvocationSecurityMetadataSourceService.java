@@ -1,16 +1,10 @@
 package com.us.example.service;
 
-import com.us.example.repository.PermissionDao;
-import com.us.example.domain.Permission;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
-import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**
@@ -26,7 +20,7 @@ public class MyInvocationSecurityMetadataSourceService  implements
     //所以此方法的返回值不能返回 null 此处我就随便返回一下。
     @Override
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
-        Collection<ConfigAttribute> co=new ArrayList<>();
+        Collection<ConfigAttribute> co=new ArrayList<ConfigAttribute>();
         co.add(new SecurityConfig("null"));
         return co;
     }

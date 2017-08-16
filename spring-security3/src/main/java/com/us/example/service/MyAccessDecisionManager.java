@@ -14,13 +14,20 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
 import java.util.Iterator;
 
-/**
- * Created by yangyibo on 17/1/19.
- */
 @Service
 public class MyAccessDecisionManager implements AccessDecisionManager {
 
     //decide 方法是判定是否拥有权限的决策方法
+
+    //因为：decide 是判定是否拥有权限的决策方法 ，三个参数的含义分别为：
+
+    //authentication 是从CustomUserService中循环添加到 GrantedAuthority 对象中的权限信息集合.
+    //object 包含客户端发起的请求的request信息，可转换为 HttpServletRequest request = ((FilterInvocation) object).getHttpRequest();
+    //configAttributes 为MyInvocationSecurityMetadataSource的getAttributes(Object object)这个方法返回的结果，此方法是为了
+    //判定用户请求的url 是否在权限表中，如果在权限表中，则返回给 decide 方法，用来判定用户是否有此权限。如果不在权限表中则放行。
+
+    //因为我不想每一次来了请求，都先要匹配一下权限表中的信息是不是包含此url，我准备直接拦截，不管请求的url 是什么都直接拦
+    //截，然后在MyAccessDecisionManager的decide 方法中做 拦截还是放行的决策。
     @Override
     public void decide(Authentication authentication, Object object, Collection<ConfigAttribute> configAttributes) throws AccessDeniedException, InsufficientAuthenticationException {
 
@@ -48,8 +55,6 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
         }
         throw new AccessDeniedException("no right");
     }
-
-
 
     @Override
     public boolean supports(ConfigAttribute attribute) {
