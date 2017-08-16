@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .anyRequest().authenticated() //任何请求,登录后可以访问,对任何尚未匹配的URL进行身份验证
                 //忽略一些资源的访问权限:如静态资源
-                .antMatchers(new String[]{"/js/**", "/css/**", "/img/**", "/images/**", "/fonts/**", "/**/favicon.ico"}).permitAll()
+                .antMatchers( "/js/**", "/css/**", "/img/**", "/images/**", "/fonts/**", "/**/favicon.ico").permitAll()
                 .and()
                 // 登录地址，成功跳转地址，登录失败地址
                 // .formLogin().loginPage("/login").defaultSuccessUrl("/", true).failureUrl("/login?error")
