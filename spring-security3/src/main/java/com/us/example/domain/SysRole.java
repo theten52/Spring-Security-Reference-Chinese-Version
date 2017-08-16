@@ -15,7 +15,7 @@ public class SysRole {
     private String name;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")//加入一列作为外键
+    @JoinColumn(name = "user_id")//将SysUser的id重命名为 user_id 并且作为此实体映射的表的外键
     private SysUser sysUser;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
