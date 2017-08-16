@@ -12,17 +12,16 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 
-/**
- * Created by yangyibo on 17/1/18.
- */
-
-
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private final MyFilterSecurityInterceptor myFilterSecurityInterceptor;
+
     @Autowired
-    private MyFilterSecurityInterceptor myFilterSecurityInterceptor;
+    public WebSecurityConfig(MyFilterSecurityInterceptor myFilterSecurityInterceptor) {
+        this.myFilterSecurityInterceptor = myFilterSecurityInterceptor;
+    }
 
 
     @Bean
@@ -33,13 +32,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(customUserService()); //user Details Service验证
-
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .anyRequest().authenticated() //任何请求,登录后可以访问
+                .antMatchers("/js/**", "/css/**", "/img/**", "/images/**", "/fonts/**", "/**/favicon.ico").permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -47,10 +46,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll() //登录页面用户任意访问
                 .and()
                 .logout().permitAll(); //注销行为任意访问
+
         http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class)
                 .csrf().disable();
-
-
     }
 }
 
