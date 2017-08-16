@@ -14,11 +14,11 @@ public class SysRole {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")//将SysUser的id重命名为 user_id 并且作为此实体映射的表的外键
-    private SysUser sysUser;
+    // @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    // @JoinColumn(name = "user_id")//将SysUser的id重命名为 user_id 并且作为此实体映射的表的外键
+    // private SysUser sysUser;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER,targetEntity = Permission.class)
     @JoinTable(name="ss3_role_permission",joinColumns={@JoinColumn(name="r_id")},inverseJoinColumns={@JoinColumn(name="p_id")})
     private Set<Permission> permissions;
 
@@ -38,13 +38,13 @@ public class SysRole {
         this.name = name;
     }
 
-    public SysUser getSysUser() {
-        return sysUser;
-    }
-
-    public void setSysUser(SysUser sysUser) {
-        this.sysUser = sysUser;
-    }
+    // public SysUser getSysUser() {
+    //     return sysUser;
+    // }
+    //
+    // public void setSysUser(SysUser sysUser) {
+    //     this.sysUser = sysUser;
+    // }
 
     public Set<Permission> getPermissions() {
         return permissions;
@@ -59,7 +59,7 @@ public class SysRole {
         return "SysRole{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", sysUser=" + sysUser +
+                // ", sysUser=" + sysUser +
                 ", permissions=" + permissions +
                 '}';
     }

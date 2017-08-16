@@ -9,5 +9,4 @@ import java.util.ArrayList;
 
 @Repository
 public interface RoleRepository extends JpaRepository<SysRole,Integer>{
-    ArrayList<SysRole> findAllBySysUser(SysUser sysUser);
 }

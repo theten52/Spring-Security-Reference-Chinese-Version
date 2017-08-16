@@ -3,7 +3,6 @@ package com.us.example.service;
 import com.us.example.domain.Permission;
 import com.us.example.domain.SysRole;
 import com.us.example.domain.SysUser;
-import com.us.example.repository.RoleRepository;
 import com.us.example.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -15,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by yangyibo on 17/1/18.
@@ -23,18 +23,16 @@ import java.util.List;
 public class CustomUserService implements UserDetailsService { //自定义UserDetailsService 接口
 
     private final UserRepository userRepository;
-    private final RoleRepository sysRoleRepository;
 
     @Autowired
-    public CustomUserService(UserRepository userRepository, RoleRepository sysRoleRepository) {
+    public CustomUserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.sysRoleRepository = sysRoleRepository;
     }
 
     public UserDetails loadUserByUsername(String username) {
         SysUser user = userRepository.findFirstByUsername(username);
         if (user != null) {
-            ArrayList<SysRole> sysRoles = sysRoleRepository.findAllBySysUser(user);
+            Set<SysRole> sysRoles = user.getRoles();
             List<Permission> permissions = new ArrayList<Permission>();
             for (SysRole role : sysRoles) {
                 for (Object p : role.getPermissions()) {

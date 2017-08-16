@@ -2,6 +2,7 @@ package com.us.example.domain;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "ss3_sys_user")
@@ -17,8 +18,8 @@ public class SysUser {
     @Column(name = "password")
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "sysUser")
-    private List<SysRole> roles;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<SysRole> roles;
 
     public Integer getId() {
         return id;
@@ -44,11 +45,11 @@ public class SysUser {
         this.password = password;
     }
 
-    public List<SysRole> getRoles() {
+    public Set<SysRole> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<SysRole> roles) {
+    public void setRoles(Set<SysRole> roles) {
         this.roles = roles;
     }
 

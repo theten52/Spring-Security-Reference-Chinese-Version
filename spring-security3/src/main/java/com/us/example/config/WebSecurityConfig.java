@@ -1,6 +1,5 @@
 package com.us.example.config;
 
-import com.us.example.repository.RoleRepository;
 import com.us.example.repository.UserRepository;
 import com.us.example.service.CustomUserService;
 import com.us.example.service.MyFilterSecurityInterceptor;
@@ -9,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,20 +19,18 @@ import org.springframework.security.web.access.intercept.FilterSecurityIntercept
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
     private final MyFilterSecurityInterceptor myFilterSecurityInterceptor;
 
     @Autowired
-    public WebSecurityConfig(UserRepository userRepository, RoleRepository roleRepository, MyFilterSecurityInterceptor myFilterSecurityInterceptor) {
+    public WebSecurityConfig(UserRepository userRepository, MyFilterSecurityInterceptor myFilterSecurityInterceptor) {
         this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
         this.myFilterSecurityInterceptor = myFilterSecurityInterceptor;
     }
 
 
     @Bean
     UserDetailsService customUserService() { //注册UserDetailsService 的bean
-        return new CustomUserService(userRepository, roleRepository);
+        return new CustomUserService(userRepository);
     }
 
     @Override
