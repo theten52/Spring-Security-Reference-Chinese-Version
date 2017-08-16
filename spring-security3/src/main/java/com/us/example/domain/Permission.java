@@ -1,6 +1,7 @@
 package com.us.example.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "ss3_permission")
@@ -30,6 +31,10 @@ public class Permission {
     //请求方法
     @Column(name = "method")
     private String method;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+    @JoinTable(name="ss3_role_permission",joinColumns={@JoinColumn(name="p_id")},inverseJoinColumns={@JoinColumn(name="r_id")})
+    private Set<SysRole> sysRoles;
 
     public int getId() {
         return id;
@@ -79,6 +84,14 @@ public class Permission {
         this.method = method;
     }
 
+    public Set<SysRole> getSysRoles() {
+        return sysRoles;
+    }
+
+    public void setSysRoles(Set<SysRole> sysRoles) {
+        this.sysRoles = sysRoles;
+    }
+
     @Override
     public String toString() {
         return "Permission{" +
@@ -88,6 +101,7 @@ public class Permission {
                 ", url='" + url + '\'' +
                 ", pid=" + pid +
                 ", method='" + method + '\'' +
+                ", sysRoles=" + sysRoles +
                 '}';
     }
 }
