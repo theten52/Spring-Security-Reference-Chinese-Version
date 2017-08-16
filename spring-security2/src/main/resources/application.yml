@@ -67,8 +67,8 @@ spring.jpa:
   # Hibernate ddl auto (create, create-drop, update): with "update" the database
   # schema will be automatically updated accordingly to java entities found in
   # the project
-  hibernate.ddl-auto: create-drop
-  #   hibernate.ddl-auto: update
+  #  hibernate.ddl-auto: create-drop
+  hibernate.ddl-auto: update
   # Naming strategy
   hibernate.naming.strategy: org.hibernate.cfg.ImprovedNamingStrategy
 
