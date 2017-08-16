@@ -7,9 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-/**
- * Created by yangyibo on 17/1/18.
- */
 @Controller
 public class HomeController {
 
@@ -38,13 +35,11 @@ public class HomeController {
         return "hello getList";
     }
 
-
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     @ResponseBody
     public String save(){
         return "hello save";
     }
-
 
     @RequestMapping(value = "/user", method = RequestMethod.PUT)
     @ResponseBody
