@@ -32,7 +32,7 @@ public class Permission {
     @Column(name = "method")
     private String method;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinTable(name="ss3_role_permission",joinColumns={@JoinColumn(name="p_id")},inverseJoinColumns={@JoinColumn(name="r_id")})
     private Set<SysRole> sysRoles;
 

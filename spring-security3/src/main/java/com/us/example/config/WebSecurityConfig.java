@@ -1,5 +1,7 @@
 package com.us.example.config;
 
+import com.us.example.repository.RoleRepository;
+import com.us.example.repository.UserRepository;
 import com.us.example.service.CustomUserService;
 import com.us.example.service.MyFilterSecurityInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,17 +18,21 @@ import org.springframework.security.web.access.intercept.FilterSecurityIntercept
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
     private final MyFilterSecurityInterceptor myFilterSecurityInterceptor;
 
     @Autowired
-    public WebSecurityConfig(MyFilterSecurityInterceptor myFilterSecurityInterceptor) {
+    public WebSecurityConfig(UserRepository userRepository, RoleRepository roleRepository, MyFilterSecurityInterceptor myFilterSecurityInterceptor) {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
         this.myFilterSecurityInterceptor = myFilterSecurityInterceptor;
     }
 
 
     @Bean
     UserDetailsService customUserService() { //注册UserDetailsService 的bean
-        return new CustomUserService();
+        return new CustomUserService(userRepository, roleRepository);
     }
 
     @Override
@@ -40,13 +46,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated() //任何请求,登录后可以访问
                 .antMatchers("/js/**", "/css/**", "/img/**", "/images/**", "/fonts/**", "/**/favicon.ico").permitAll()
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .failureUrl("/login?error")
-                .permitAll() //登录页面用户任意访问
+                .formLogin().loginPage("/login").failureUrl("/login?error").permitAll() //登录页面用户任意访问
                 .and()
                 .logout().permitAll(); //注销行为任意访问
 
+        //关闭csrf;
         http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class)
                 .csrf().disable();
     }

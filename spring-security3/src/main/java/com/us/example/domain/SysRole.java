@@ -18,7 +18,7 @@ public class SysRole {
     @JoinColumn(name = "user_id")//加入一列作为外键
     private SysUser sysUser;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinTable(name="ss3_role_permission",joinColumns={@JoinColumn(name="r_id")},inverseJoinColumns={@JoinColumn(name="p_id")})
     private Set<Permission> permissions;
 
