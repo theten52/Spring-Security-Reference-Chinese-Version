@@ -27,7 +27,7 @@
         <module>spring-security2</module>
         <module>spring-security3</module>
         <module>security4</module>
-        <module>encache</module>
+        <module>ehcache</module>
     </modules>
 
     <dependencies>
