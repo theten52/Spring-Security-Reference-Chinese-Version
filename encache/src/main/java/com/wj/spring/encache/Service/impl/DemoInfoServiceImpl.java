@@ -1,5 +1,6 @@
-package com.wj.spring.encache.Service;
+package com.wj.spring.encache.Service.impl;
 
+import com.wj.spring.encache.Service.DemoInfoService;
 import com.wj.spring.encache.entity.DemoInfo;
 import com.wj.spring.encache.exception.NotFoundException;
 import com.wj.spring.encache.repository.DemoInfoRepository;
