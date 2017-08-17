@@ -25,6 +25,8 @@
         <module>onetomany2</module>
         <module>spring-security</module>
         <module>spring-security2</module>
+        <module>spring-security3</module>
+        <module>security4</module>
     </modules>
 
     <dependencies>
