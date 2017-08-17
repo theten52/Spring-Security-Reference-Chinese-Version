@@ -5,9 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EnCacheApplication {
+public class EhCacheApplication {
     public static void main(String[] args) {
-        SpringApplication.run(EnCacheApplication.class, args);
+        SpringApplication.run(EhCacheApplication.class, args);
         DemoInfoController demoInfoController = new DemoInfoController();
         demoInfoController.test();
     }
