@@ -12,7 +12,7 @@ import org.springframework.core.io.ClassPathResource;
  */
 @Configuration
 @EnableCaching//标注启动缓存.
-public class EnCacheConfig {
+public class EhCacheConfig {
 
     /**
      * ehcache 主要的管理器
