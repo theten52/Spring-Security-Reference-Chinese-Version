@@ -3,8 +3,10 @@ package com.wj.spring.encache.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "encache_demo_info")
 public class DemoInfo {
     @Id
     @GeneratedValue
